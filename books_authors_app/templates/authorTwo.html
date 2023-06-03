@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fyodor Dostoevsky</title>
+</head>
+<body>
+    <h1>Fyodor Dostoevsky</h1>
+    <p>ID:{{Fyodor.id}}</p>
+    <p>Notes: {{Fyodor.notes}}</p>
+    <p>Authors</p>
+    <ul>
+        {% for book in Books %}
+        <li>{{book.title}}</li>
+        {% endfor %}
+    </ul>
+    <form action="/addBook" method="post">
+        {% csrf_token %}
+        <label for="Books">Books</label>
+        <select name="author" id="author">
+            {% for book in AllTheBooks %}
+            <option value="{{book}}">{{book.title}}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Add">
+    </form>
+</body>
+</html>
